@@ -1,22 +1,35 @@
-# Dataset CIL Webots
+# Dataset CIL Webots estratificado
 
-Dataset balanceado para entrenamiento de Conditional Imitation Learning (CIL)
-en Webots.
+Dataset construido con selección estratificada dentro de FOLLOW_LANE.
 
-## Contenido
+## Resumen por comando
 
-- `driving_log.csv`: archivo con rutas de imágenes, comando de navegación y ángulo de dirección.
-- `images/`: imágenes capturadas desde la cámara del vehículo.
+command_name
+FOLLOW_LANE    8000
+LEFT           3550
+RIGHT          2370
+STRAIGHT       1509
 
-## Columnas principales
+## FOLLOW_LANE por intervalo de steering
 
-- `image_path`: ruta relativa de la imagen.
-- `navigation_command`: comando CIL codificado numéricamente.
-- `command_name`: nombre del comando.
-- `steering_angle`: ángulo de dirección usado como etiqueta.
-- `camera_name`: cámara de origen, si está disponible.
-- `source`: identificador de origen del dataset.
-- `original_image_path`: ruta original antes de crear este dataset balanceado.
+angle_bin
+almost_straight          635
+almost_straight_left     547
+left_extreme             418
+left_medium              947
+left_soft               1028
+left_strong              631
+right_extreme            551
+right_medium            1076
+right_soft               886
+right_strong             939
+right_super_extreme      342
+
+## Parámetros
+
+- follow_total: 8000
+- gps_grid_size: 20.0
+- random_state: 42
 
 ## Comandos
 
@@ -24,24 +37,3 @@ en Webots.
 - 3 = LEFT
 - 4 = RIGHT
 - 5 = STRAIGHT
-
-## Resumen
-
-Total de muestras: 15429
-
-Distribución por comando:
-
-- FOLLOW_LANE: 8000
-- LEFT: 3550
-- RIGHT: 2370
-- STRAIGHT: 1509
-
-
-## Origen
-
-Este dataset fue creado a partir de:
-
-`dataset_cil/driving_log.csv`
-
-El objetivo de este subconjunto es reducir el desbalance del dataset original
-y facilitar su uso en Google Colab mediante `git clone`.
